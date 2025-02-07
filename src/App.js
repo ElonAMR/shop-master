@@ -7,7 +7,7 @@ function App() {
 
 
 
-
+// console.log(Arr_Products);
 
   return (
 
