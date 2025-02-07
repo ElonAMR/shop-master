@@ -1,7 +1,7 @@
 import './App.css';
 import Arr_Products from "./Arr_Products";
-import {useState} from "react";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Children, useState} from "react";
+import {createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
 
 function App() {
   const [products,setProducts]=useState(Arr_Products);
@@ -12,8 +12,35 @@ function App() {
   const router = createBrowserRouter([
     {
       path:'/',
-      element:<h1>hello</h1>
-    },
+      element:(
+          <>
+            <header>
+                <h1>Wellcome</h1>
+            <nav>
+                <button><Link to={"cart"}> Shopping cart </Link></button>
+                <button><Link to={"./"}> Products List </Link></button>
+                <button><Link to={"admin"}> Admin </Link></button>
+            </nav>
+            </header>
+              <hr></hr>
+            <Outlet/>
+          </>
+      ),
+      children: [
+          {
+            index:true,
+            element:<h1>Products</h1>,
+          },
+          {
+            path:'cart',
+            element:<h1>Cart</h1>,
+          },
+          {
+            path: 'admin',
+            element: <h1>Admin</h1>   ,
+          }
+      ]
+    }
   ]);
 
 
