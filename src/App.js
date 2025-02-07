@@ -1,17 +1,27 @@
 import './App.css';
 import Arr_Products from "./Arr_Products";
-
-
+import {useState} from "react";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 function App() {
+  const [products,setProducts]=useState(Arr_Products);
+
+  console.log(products);
+
+
+  const router = createBrowserRouter([
+    {
+      path:'/',
+      element:<h1>hello</h1>
+    },
+  ]);
 
 
 
-// console.log(Arr_Products);
+
 
   return (
-
-    <h1>Main</h1>
+    <RouterProvider router={router}/>
   );
 }
 
