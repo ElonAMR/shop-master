@@ -2,11 +2,14 @@ import './App.css';
 import Arr_Products from "./Arr_Products";
 import {Children, useState} from "react";
 import {createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
+import Products from "./pages/products";
+
 
 function App() {
   const [products,setProducts]=useState(Arr_Products);
+  const [cart,update_cart]=useState([]);
 
-  console.log(products);
+  // console.log(products);
 
 
   const router = createBrowserRouter([
@@ -29,7 +32,7 @@ function App() {
       children: [
           {
             index:true,
-            element:<h1>Products</h1>,
+              element:<Products products={products} update_cart={update_cart}></Products>,
           },
           {
             path:'cart',
@@ -37,7 +40,7 @@ function App() {
           },
           {
             path: 'admin',
-            element: <h1>Admin</h1>   ,
+            element: <h1>Admin</h1>,
           }
       ]
     }
