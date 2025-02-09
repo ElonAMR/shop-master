@@ -32,7 +32,7 @@ function App() {
       children: [
           {
             index:true,
-              element:<Products products={products} update_cart={update_cart}></Products>,
+              element:<Products products={products} cart={cart} update_cart={update_cart}></Products>,
           },
           {
             path:'cart',
