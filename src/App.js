@@ -1,15 +1,22 @@
 import './App.css';
 import Arr_Products from "./Arr_Products";
-import {Children, useState} from "react";
+import {useState} from "react";
 import {createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
 import Products from "./pages/products";
+import Cart from "./pages/cart";
 
 
 function App() {
   const [products,setProducts]=useState(Arr_Products);
   const [cart,update_cart]=useState([]);
+  console.log("Rendering App with cart:", cart); // בדוק שהאב מתעדכן
 
-  // console.log(products);
+
+
+    function loaderCart(){
+        return cart;
+    }
+
 
 
   const router = createBrowserRouter([
@@ -36,7 +43,8 @@ function App() {
           },
           {
             path:'cart',
-            element:<h1>Cart</h1>,
+              element:<Cart update_cart={update_cart}></Cart>,
+              loader:loaderCart
           },
           {
             path: 'admin',
@@ -45,9 +53,6 @@ function App() {
       ]
     }
   ]);
-
-
-
 
 
   return (

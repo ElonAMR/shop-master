@@ -1,0 +1,49 @@
+import getUrl from "../components/getUrl";
+import {useLoaderData} from "react-router-dom";
+
+export default function Cart({update_cart}){
+
+    const cart = useLoaderData();
+
+
+    const removeFromCart = (index) => {
+        update_cart(prevCart => {
+            const newCart = [...prevCart];
+            newCart.splice(index, 1);
+            return newCart;
+        });
+    }
+
+
+    return(
+        <div className={"container-cart"}>
+            <h2>Your Shopping Cart</h2>
+            {cart.length === 0 ? (
+                <h5>Your Cart Is Empty</h5>
+            ) : (
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Remove</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {cart.map((item,index) => (
+                        <tr key={index}>
+                            <td><img src={getUrl(item.image)} alt={item.name} style={{width:'50px'}}/></td>
+                            <td>{item.name}</td>
+                            <td>{item.description}</td>
+                            <td>{item.price}</td>
+                            <td><button onClick={() => removeFromCart(index)}>X</button> </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            )}
+        </div>
+    );
+}
