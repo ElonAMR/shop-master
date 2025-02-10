@@ -7,8 +7,8 @@ export default function Cart({update_cart}){
 
 
     const removeFromCart = (index) => {
-        update_cart(prevCart => {
-            const newCart = [...prevCart];
+        update_cart(cart => {
+            const newCart = [...cart];
             newCart.splice(index, 1);
             return newCart;
         });

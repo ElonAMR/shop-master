@@ -12,6 +12,10 @@ function App() {
   console.log("Rendering App with cart:", cart); // בדוק שהאב מתעדכן
 
 
+    function loaderProducts(){
+        return products;
+    }
+
 
     function loaderCart(){
         return cart;
@@ -39,12 +43,14 @@ function App() {
       children: [
           {
             index:true,
-              element:<Products products={products} cart={cart} update_cart={update_cart}></Products>,
+            element:<Products products={products} cart={cart} update_cart={update_cart}></Products>,
+            loader:loaderProducts
+
           },
           {
             path:'cart',
-              element:<Cart update_cart={update_cart}></Cart>,
-              loader:loaderCart
+            element:<Cart update_cart={update_cart}></Cart>,
+            loader:loaderCart
           },
           {
             path: 'admin',

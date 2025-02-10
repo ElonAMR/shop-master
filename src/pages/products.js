@@ -1,12 +1,14 @@
 import getUrl from "../components/getUrl";
+import {useLoaderData} from "react-router-dom";
 
-export default function Products({products ,cart, update_cart}){
+export default function Products({cart, update_cart}){
+
+    const products= useLoaderData();
+
 
    const addToCart = (p) => {
-     update_cart(prevCart => [...prevCart,p]);
+     update_cart([...cart,p]);
    };
-
-console.log(cart);
 
 
    return(
