@@ -4,7 +4,7 @@ import {useState} from "react";
 import {createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
 import Products from "./pages/products";
 import Cart from "./pages/cart";
-
+import Admin,{ActionAdmin} from "./pages/admin";
 
 function App() {
   const [products,setProducts]=useState(Arr_Products);
@@ -21,6 +21,13 @@ function App() {
         return cart;
     }
 
+
+    // מאפשר לי לטעון נתונים ולהציג אותם ברגע שהקומפוננטה נטענת
+    function loaderAdminEdit({params}){
+        let id = parseInt(params.id);  // הפיכת ID למספר
+        console.log(id);
+        return products.find(p => p.id === id) || null;
+    }
 
 
   const router = createBrowserRouter([
@@ -43,7 +50,7 @@ function App() {
       children: [
           {
             index:true,
-            element:<Products products={products} cart={cart} update_cart={update_cart}></Products>,
+            element:<Products cart={cart} update_cart={update_cart}></Products>,
             loader:loaderProducts
 
           },
@@ -54,7 +61,14 @@ function App() {
           },
           {
             path: 'admin',
-            element: <h1>Admin</h1>,
+            element: <Admin products={products} setProducts={setProducts}></Admin>,
+            children:[
+                {
+                    path:'edit/:id?',
+                    element:<ActionAdmin/>,
+                    loader:loaderAdminEdit
+                }
+            ]
           }
       ]
     }
