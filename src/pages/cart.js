@@ -5,6 +5,7 @@ export default function Cart({update_cart}){
 
     const cart = useLoaderData();
 
+    const totalAmount = cart.reduce((total, item) => total + item.price, 0);
 
     const removeFromCart = (index) => {
         update_cart(cart => {
@@ -32,18 +33,26 @@ export default function Cart({update_cart}){
                     </tr>
                     </thead>
                     <tbody>
-                    {cart.map((item,index) => (
+                    {cart.map((item, index) => (
                         <tr key={index}>
-                            <td><img src={getUrl(item.image)} alt={item.name} style={{width:'50px'}}/></td>
+                            <td><img src={getUrl(item.image)} alt={item.name} style={{width: '50px'}}/></td>
                             <td>{item.name}</td>
                             <td>{item.description}</td>
                             <td>{item.price}</td>
-                            <td><button onClick={() => removeFromCart(index)}>X</button> </td>
+                            <td>
+                                <button onClick={() => removeFromCart(index)}>X</button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
             )}
+
+            <div className="total">
+                <h3>Total Amount: ${totalAmount.toFixed(2)}</h3>
+                <button>Go to Checkout</button>
+            </div>
+
         </div>
     );
 }
