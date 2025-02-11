@@ -71,7 +71,7 @@ export function EditAdmin() {
                 </label>
                 <label>
                     Price:
-                    <input type="number" name="price" defaultValue={obj.price}/>
+                    <input name="price" defaultValue={obj.price}/>
                 </label>
                 <label>
                     Image URL:
@@ -84,14 +84,14 @@ export function EditAdmin() {
 }
 
 
-export function AddAdmin() {
-    const obj = useLoaderData();
-
-
-    return (
-        <>
-            <h1>Add Page</h1>
-
-        </>
-    );
-}
+// export function AddAdmin() {
+//     const obj = useLoaderData();
+//
+//
+//     return (
+//         <>
+//             <h1>Add Page</h1>
+//
+//         </>
+//     );
+// }

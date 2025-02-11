@@ -1,7 +1,7 @@
 import './App.css';
 import Arr_Products from "./Arr_Products";
 import {useState} from "react";
-import {createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
+import {redirect, createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
 import Products from "./pages/products";
 import Cart from "./pages/cart";
 import Admin, {AddAdmin, EditAdmin} from "./pages/admin";
@@ -10,6 +10,7 @@ function App() {
   const [products,setProducts]=useState(Arr_Products);
   const [cart,update_cart]=useState([]);
   console.log("Rendering App with cart:", cart); // בדוק שהאב מתעדכן
+    console.log("Rendering App :", products); // בדוק שהאב מתעדכן
 
 
     function loaderProducts(){
@@ -25,8 +26,29 @@ function App() {
     // מאפשר לי לטעון נתונים ולהציג אותם ברגע שהקומפוננטה נטענת
     function loaderAdminEdit({params}){
         let id = parseInt(params.id);  // הפיכת ID למספר
-        console.log(id);
         return products.find(p => p.id === id) || {};
+    }
+
+
+
+    async function actionAdminEdit({request}){
+        const formData= await request.formData(); //מקבל את המידע שנשלח מהטופס
+
+        const data = Object.fromEntries(formData); // ממיר את המידע לאובייקט עם שדה וערך
+
+        console.log(data);
+
+        data.id=parseInt(data.id);
+        data.price = parseFloat(data.price);
+
+        const updateArr = products.map( p =>
+            p.id === data.id ? {...p ,...data} : p
+        );
+
+        setProducts(updateArr);
+        console.log(updateArr);
+
+        return redirect('/');
     }
 
 
@@ -66,7 +88,8 @@ function App() {
                 {
                     path:'edit/:id?',
                     element:<EditAdmin setProducts={setProducts}/>,
-                    loader:loaderAdminEdit
+                    loader:loaderAdminEdit,
+                    action:actionAdminEdit
                 },
                 {
                     path:'add',
@@ -86,3 +109,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
