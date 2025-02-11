@@ -4,7 +4,7 @@ import {useState} from "react";
 import {createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
 import Products from "./pages/products";
 import Cart from "./pages/cart";
-import Admin,{ActionAdmin} from "./pages/admin";
+import Admin, {AddAdmin, EditAdmin} from "./pages/admin";
 
 function App() {
   const [products,setProducts]=useState(Arr_Products);
@@ -26,7 +26,7 @@ function App() {
     function loaderAdminEdit({params}){
         let id = parseInt(params.id);  // הפיכת ID למספר
         console.log(id);
-        return products.find(p => p.id === id) || null;
+        return products.find(p => p.id === id) || {};
     }
 
 
@@ -65,8 +65,13 @@ function App() {
             children:[
                 {
                     path:'edit/:id?',
-                    element:<ActionAdmin/>,
+                    element:<EditAdmin setProducts={setProducts}/>,
                     loader:loaderAdminEdit
+                },
+                {
+                    path:'add',
+                    element:<AddAdmin/>,
+
                 }
             ]
           }
