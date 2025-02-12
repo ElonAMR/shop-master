@@ -32,11 +32,9 @@ function App() {
 
 
     async function actionAdminEdit({request}){
+
         const formData= await request.formData(); //מקבל את המידע שנשלח מהטופס
-
         const data = Object.fromEntries(formData); // ממיר את המידע לאובייקט עם שדה וערך
-
-        console.log(data);
 
         data.id=parseInt(data.id);
         data.price = parseFloat(data.price);
@@ -46,7 +44,6 @@ function App() {
         );
 
         setProducts(updateArr);
-        console.log(updateArr);
 
         return redirect('/');
     }

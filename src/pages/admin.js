@@ -2,6 +2,8 @@ import {useNavigate , Form, Link, Outlet, useLoaderData} from "react-router-dom"
 import {useState} from "react";
 
 
+
+
 export default function Admin(){
     let [id,set_id]=useState('');
 
@@ -29,6 +31,15 @@ export default function Admin(){
 
 
 
+
+
+
+
+
+
+
+
+// קומפוננטת עריכת מוצר בדף מנהל
 export function EditAdmin() {
     const obj = useLoaderData();  // מקבל את המוצר
     const navigate = useNavigate();
@@ -77,21 +88,63 @@ export function EditAdmin() {
                     Image URL:
                     <input name="image" defaultValue={obj.image}/>
                 </label>
-                <button type="submit">Update</button>
+                <button type="submit">Update Product</button>
             </Form>
         </>
     );
 }
 
 
-// export function AddAdmin() {
-//     const obj = useLoaderData();
-//
-//
-//     return (
-//         <>
-//             <h1>Add Page</h1>
-//
-//         </>
-//     );
-// }
+
+
+
+
+// קומפוננטת הוספת מוצר בדף מנהל
+export function AddAdmin() {
+
+    const [newP ,set_newP]=useState({
+        id: "",
+        name: "",
+        description: "",
+        price: "",
+        image: ""
+    });
+
+
+    const handleOnBlur = (e) => {
+        const { name, value } = e.target;
+        set_newP((newP) => ({ ...newP, [name]: value }));
+    };
+
+
+    return (
+        <>
+            <div>
+                <h2>Add New Product</h2>
+                <Form method={"post"}>
+                    <label>
+                        ID:
+                        <input type="number" name="id" defaultValue={newP.id} onBlur={handleOnBlur} required/>
+                    </label>
+                    <label>
+                        Name:
+                        <input type="text" name="name" defaultValue={newP.name} onBlur={handleOnBlur} required/>
+                    </label>
+                    <label>
+                        Description:
+                        <input type="text" name="description" maxLength="40" defaultValue={newP.description} onBlur={handleOnBlur} required/>
+                    </label>
+                    <label>
+                        Price:
+                        <input type="text" name="price" defaultValue={newP.price} onBlur={handleOnBlur} required/>
+                    </label>
+                    <label>
+                        Image URL:
+                        <input type="text" name="image" defaultValue={newP.image} onBlur={handleOnBlur} required/>
+                    </label>
+                    <button type="submit">Add New Product</button>
+                </Form>
+            </div>
+        </>
+    );
+}
