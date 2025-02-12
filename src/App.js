@@ -30,7 +30,7 @@ function App() {
     }
 
 
-
+    // מאפשר לי לקבל את הנתונים שנשלחו מטופס ולעדכן את המוצר שנבחר
     async function actionAdminEdit({request}){
 
         const formData= await request.formData(); //מקבל את המידע שנשלח מהטופס
@@ -49,13 +49,33 @@ function App() {
     }
 
 
+
+
+    // מאפשר לי לקבל את הנתונים שנשלחו מטופס הוספת מוצר ולהציגו
+    async function actionAdminAdd({request}){
+
+        const newP = await request.formData(); //מקבל את המידע שנשלח מהטופס
+        const newP_Data = Object.fromEntries(newP); // ממיר את המידע לאובייקט עם שדה וערך
+
+        newP_Data.id=parseInt(newP_Data.id);
+        newP_Data.price = parseFloat(newP_Data.price);
+
+        // הוספת המוצר החדש לסוף המערך המוצרים בסטייט
+        const updatedProducts = [...products, newP_Data];
+
+        setProducts(updatedProducts);
+
+        return redirect('/');
+    }
+
+
   const router = createBrowserRouter([
     {
       path:'/',
       element:(
           <>
             <header>
-                <h1>Wellcome</h1>
+                <h1>Welcome</h1>
             <nav>
                 <button><Link to={"cart"}> Shopping cart </Link></button>
                 <button><Link to={"./"}> Products List </Link></button>
@@ -91,7 +111,7 @@ function App() {
                 {
                     path:'add',
                     element:<AddAdmin/>,
-
+                    action:actionAdminAdd
                 }
             ]
           }
