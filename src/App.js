@@ -43,6 +43,7 @@ function App() {
 
         //לאפס את העגלה אחרי ההזמנה
         update_cart([]);
+        alert("Thank you, you will be immediately redirected to the main page.")
         return redirect('/');
     }
 

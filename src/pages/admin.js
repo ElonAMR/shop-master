@@ -115,7 +115,7 @@ export function EditAdmin() {
                         <input name="image" defaultValue={obj.image}/>
                     </label>
                     <br></br>
-                    <button type="submit" className={"btn-admin"}>Update Product</button>
+                    <button type="submit" className={"btn-act"}>Update Product</button>
                 </Form>
             </div>
         </>
@@ -181,7 +181,7 @@ export function AddAdmin() {
                         <input type="text" name="image" defaultValue={newP.image} onBlur={handleOnBlur} required/>
                     </label>
                     <br></br>
-                    <button type="submit" className={"btn-admin"}>Add New Product</button>
+                    <button type="submit" className={"btn-act"}>Add New Product</button>
                 </Form>
             </div>
         </>

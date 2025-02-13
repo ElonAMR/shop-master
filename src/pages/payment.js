@@ -26,14 +26,17 @@ export default function Payment({cart}){
                     <Form className={"form"} method="post">
                         <label>
                             Customer ID:
+                            <br></br>
                             <input name="id" defaultValue={newOrder.id} onBlur={handleOnBlur} required/>
                         </label>
                         <label>
                             Full Name:
+                            <br></br>
                             <input name="name" defaultValue={newOrder.name} onBlur={handleOnBlur} required/>
                         </label>
                         <label>
                             Address:
+                            <br></br>
                             <input name="address" defaultValue={newOrder.address} onBlur={handleOnBlur} required/>
                         </label>
 
