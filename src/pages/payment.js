@@ -44,7 +44,7 @@ export default function Payment({cart}){
                         <input type="hidden" name="order" value={JSON.stringify(newOrder.order)}/>
                         <input type="hidden" name="price" value={JSON.stringify(newOrder.price)}/>
 
-                        <button type="submit">Pay &#xf09d;</button>
+                        <button type="submit" className={"btn-admin"}>Pay</button>
                     </Form>
                 )}
             </div>
