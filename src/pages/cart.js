@@ -1,5 +1,6 @@
 import getUrl from "../components/getUrl";
 import {useLoaderData} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function Cart({update_cart}){
 
@@ -50,7 +51,7 @@ export default function Cart({update_cart}){
 
             <div className="total">
                 <h3>Total Amount: ${totalAmount.toFixed(2)}</h3>
-                <button>Go to Checkout</button>
+                <button><Link to={'/payment'} /* to={{ pathname: '/payment', state: { cart, totalAmount }*/ >Go to Payment</Link></button>
             </div>
 
         </div>

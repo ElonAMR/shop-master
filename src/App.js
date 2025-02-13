@@ -4,14 +4,16 @@ import {useState} from "react";
 import {redirect, createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-dom";
 import Products from "./pages/products";
 import Cart from "./pages/cart";
+import Payment from "./pages/payment";
 import Admin, {AddAdmin, EditAdmin} from "./pages/admin";
 
 function App() {
   const [products,setProducts]=useState(Arr_Products);
   const [cart,update_cart]=useState([]);
-  console.log("Rendering App with cart:", cart); // בדוק שהאב מתעדכן
-    console.log("Rendering App :", products); // בדוק שהאב מתעדכן
+  const [orders,set_orders]=useState([]);
 
+
+   console.log("orders:" , orders);
 
     function loaderProducts(){
         return products;
@@ -28,6 +30,22 @@ function App() {
         let id = parseInt(params.id);  // הפיכת ID למספר
         return products.find(p => p.id === id) || {};
     }
+
+
+    async function actionOrders({request}){
+        const orderData=await request.formData();
+        const newOrder=Object.fromEntries(orderData);
+
+        newOrder.order = JSON.parse(newOrder.order);
+        newOrder.price = JSON.parse(newOrder.price);
+
+        set_orders((prevOrders) => [...prevOrders, newOrder]);
+
+        //לאפס את העגלה אחרי ההזמנה
+        update_cart([]);
+        return redirect('/');
+    }
+
 
 
     // מאפשר לי לקבל את הנתונים שנשלחו מטופס ולעדכן את המוצר שנבחר
@@ -47,7 +65,6 @@ function App() {
 
         return redirect('/');
     }
-
 
 
 
@@ -96,7 +113,12 @@ function App() {
           {
             path:'cart',
             element:<Cart update_cart={update_cart}></Cart>,
-            loader:loaderCart
+            loader:loaderCart,
+          },
+          {
+              path: 'payment',
+              element: <Payment cart={cart} />,
+              action:actionOrders,
           },
           {
             path: 'admin',
