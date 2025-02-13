@@ -1,5 +1,3 @@
-// import { useLocation } from 'react-router-dom';
-
 import {Form} from "react-router-dom";
 import {useState} from "react";
 
@@ -19,34 +17,33 @@ export default function Payment({cart}){
         set_newOrder((newOrder) => ({ ...newOrder, [name]: value }));
     };
 
-    console.log(newOrder);
-    // const location = useLocation();
-    // const { cart, totalAmount } = location.state || { cart: [], totalAmount: 0 };
-
     return(
         <>
-            <h1>Payment</h1>
             <div>
-                <Form method="post">
-                    <label>
-                        Customer ID:
-                        <input name="id" defaultValue={newOrder.id} onBlur={handleOnBlur} required/>
-                    </label>
-                    <label>
-                        Full Name:
-                        <input name="name" defaultValue={newOrder.name} onBlur={handleOnBlur} required/>
-                    </label>
-                    <label>
-                        Address:
-                        <input name="address" defaultValue={newOrder.address} onBlur={handleOnBlur} required/>
-                    </label>
+            <h1>Payment</h1>
+                {cart.length === 0 ? ( <h3>Your Cart Is Empty :) </h3> ) :
+                (
+                    <Form method="post">
+                        <label>
+                            Customer ID:
+                            <input name="id" defaultValue={newOrder.id} onBlur={handleOnBlur} required/>
+                        </label>
+                        <label>
+                            Full Name:
+                            <input name="name" defaultValue={newOrder.name} onBlur={handleOnBlur} required/>
+                        </label>
+                        <label>
+                            Address:
+                            <input name="address" defaultValue={newOrder.address} onBlur={handleOnBlur} required/>
+                        </label>
 
-                    <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
-                    <input type="hidden" name="order" value={JSON.stringify(newOrder.order)}/>
-                    <input type="hidden" name="price" value={JSON.stringify(newOrder.price)}/>
+                        <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+                        <input type="hidden" name="order" value={JSON.stringify(newOrder.order)}/>
+                        <input type="hidden" name="price" value={JSON.stringify(newOrder.price)}/>
 
-                    <button type="submit">Pay</button>
-                </Form>
+                        <button type="submit">Pay</button>
+                    </Form>
+                )}
             </div>
         </>
     );
