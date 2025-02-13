@@ -91,21 +91,24 @@ function App() {
       path:'/',
       element:(
           <>
-            <header>
-                <h1>Welcome</h1>
-            <nav>
-                <button><Link to={"cart"}> Shopping cart </Link></button>
-                <button><Link to={"./"}> Products List </Link></button>
-                <button><Link to={"admin"}> Admin </Link></button>
-            </nav>
-            </header>
-              <hr></hr>
-            <Outlet/>
+          <div className="app-container">
+              <header>
+                  <h1>Shop Master</h1>
+                  <nav>
+                      <button className={"btn-menu"}><Link to={"cart"}> Shopping cart </Link></button>
+                      <button className={"btn-menu"}><Link to={"./"}> Products List </Link></button>
+                      <button className={"btn-menu"}><Link to={"admin"}> Admin </Link></button>
+                  </nav>
+              </header>
+              <div className="outlet-container">
+                  <Outlet/>
+              </div>
+          </div>
           </>
       ),
-      children: [
-          {
-            index:true,
+        children: [
+            {
+                index:true,
             element:<Products cart={cart} update_cart={update_cart}></Products>,
             loader:loaderProducts
 

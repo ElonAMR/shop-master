@@ -22,7 +22,7 @@ export default function Products({cart, update_cart}){
                         <h3>{p.name}</h3>
                         <p>{p.description}</p>
                         <h3>{p.price}$</h3>
-                        <button onClick={()=> addToCart(p)}>Add To Cart</button>
+                        <button className={"addToCart"} onClick={()=> addToCart(p)}>Add To Cart</button>
                     </div>
                 ))}
             </div>

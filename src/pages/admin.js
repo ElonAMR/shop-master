@@ -13,19 +13,31 @@ export default function Admin(){
 
     return(
         <>
-        <h1>admin page</h1>
-            <div className={"container-admin"}>
-                <div>
-                    <button><Link to={"./add"}>Add Product</Link></button>
+
+                <div className={"container-admin"}>
+
+                    <div className={"actions-admin"}>
+                            <div className={"add-div"}>
+                                <h1>Add products</h1>
+                                <button className={"btn-admin"}>
+                                    <Link to={"./add"}>Add Product</Link>
+                                </button>
+                            </div>
+                            <div className={"edit-div"}>
+                                <h1>Search Id Products To Edit</h1>
+                                <input onInput={searchInput} name={"code"} className={"input-admin"}/> <br></br>
+                                <button className={"btn-admin"}>
+                                    <Link to={`./edit/${id}`}>Edit Product</Link>
+                                </button>
+                            </div>
+                    </div>
+
+                    <div className={"Outlet-right"}>
+                            <Outlet></Outlet>
+                    </div>
+
                 </div>
-                <div>
-                    <h3>search id products to edit</h3>
-                    <input onInput={searchInput} name={"code"}/>
-                    <button><Link to={`./edit/${id}`}>Edit Product</Link></button>
-                </div>
-            </div>
-            <Outlet></Outlet>
-        </>
+            </>
     )
 }
 
@@ -57,39 +69,55 @@ export function EditAdmin() {
 
     return (
         <>
-            <h3>Update Product</h3>
+            <div className={"container-edit"}>
 
-            <label>
-                Search Product by ID:
-                <input type="number" value={search_id} onInput={searchInput}/>
-                <button type="button" onClick={handleSearch}>Search</button>
-            </label>
+                <div className={"form-edit"}>
+                    <h1>Update Product</h1>
+
+                    <label>
+                        Search Product by ID:
+                        <br></br>
+                        <input type="number" value={search_id} onInput={searchInput}/>
+                        <br></br>
+                        <button type="button" onClick={handleSearch} className={"btn-admin"}>Search</button>
+                    </label>
+                </div>
 
 
-            <Form method="post">
-                <label>
-                    Product ID:
-                    <input readOnly name="id" defaultValue={obj.id}/>
-                </label>
-
-                <label>
-                    Product Name:
-                    <input name="name" defaultValue={obj.name}/>
-                </label>
-                <label>
-                    Description:
-                    <input name="description" defaultValue={obj.description}/>
-                </label>
-                <label>
-                    Price:
-                    <input name="price" defaultValue={obj.price}/>
-                </label>
-                <label>
-                    Image URL:
-                    <input name="image" defaultValue={obj.image}/>
-                </label>
-                <button type="submit">Update Product</button>
-            </Form>
+                <Form className={"form"} method="post">
+                    <label>
+                        Product ID:
+                        <br></br>
+                        <input readOnly name="id" defaultValue={obj.id}/>
+                    </label>
+                    <br></br>
+                    <label>
+                        Product Name:
+                        <br></br>
+                        <input name="name" defaultValue={obj.name}/>
+                    </label>
+                    <br></br>
+                    <label>
+                        Description:
+                        <br></br>
+                        <input name="description" defaultValue={obj.description}/>
+                    </label>
+                    <br></br>
+                    <label>
+                        Price:
+                        <br></br>
+                        <input name="price" defaultValue={obj.price}/>
+                    </label>
+                    <br></br>
+                    <label>
+                        Image URL:
+                        <br></br>
+                        <input name="image" defaultValue={obj.image}/>
+                    </label>
+                    <br></br>
+                    <button type="submit" className={"btn-admin"}>Update Product</button>
+                </Form>
+            </div>
         </>
     );
 }
@@ -119,30 +147,41 @@ export function AddAdmin() {
 
     return (
         <>
-            <div>
+            <div className={"container-add"}>
                 <h2>Add New Product</h2>
-                <Form method={"post"}>
+                <Form className={"form"} method={"post"}>
                     <label>
                         ID:
+                        <br></br>
                         <input type="number" name="id" defaultValue={newP.id} onBlur={handleOnBlur} required/>
                     </label>
+                    <br></br>
                     <label>
                         Name:
+                        <br></br>
                         <input type="text" name="name" defaultValue={newP.name} onBlur={handleOnBlur} required/>
                     </label>
+                    <br></br>
                     <label>
                         Description:
-                        <input type="text" name="description" maxLength="40" defaultValue={newP.description} onBlur={handleOnBlur} required/>
+                        <br></br>
+                        <input type="text" name="description" maxLength="40" defaultValue={newP.description}
+                               onBlur={handleOnBlur} required/>
                     </label>
+                    <br></br>
                     <label>
                         Price:
+                        <br></br>
                         <input type="text" name="price" defaultValue={newP.price} onBlur={handleOnBlur} required/>
                     </label>
+                    <br></br>
                     <label>
                         Image URL:
+                        <br></br>
                         <input type="text" name="image" defaultValue={newP.image} onBlur={handleOnBlur} required/>
                     </label>
-                    <button type="submit">Add New Product</button>
+                    <br></br>
+                    <button type="submit" className={"btn-admin"}>Add New Product</button>
                 </Form>
             </div>
         </>

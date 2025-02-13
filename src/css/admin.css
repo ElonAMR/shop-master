@@ -1,0 +1,152 @@
+/*-------------------- דף מנהל --------------------------*/
+.container-admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 80vh;
+}
+
+.actions-admin {
+    flex: 0.5;
+    padding: 5px;
+}
+
+.Outlet-right{
+    background: white;
+    flex: 0.5;
+    padding: 15px;
+    margin: 15px;
+}
+
+.actions-admin, .Outlet-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.actions-admin{
+    margin: 15px;
+    gap: 15px;
+
+}
+
+.add-div{
+    width: 100%;
+    flex: 1;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.edit-div{
+    width: 100%;
+    flex: 1;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.btn-admin {
+    margin: 5px;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+    text-decoration: none; /* מסיר קו תחתון */
+
+}
+
+.btn-admin:hover {
+    background: #218838;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* עיצוב עבור כל טופס */
+.form-edit, .form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* עיצוב עבור כל שדה טופס */
+label {
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* עיצוב עבור שדות קלט */
+input[type="number"],
+input[type="text"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn-admin {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+    margin-top: 20px;
+}
+
+.btn-admin:hover {
+    background-color: #0056b3;
+}
+
+.btn-admin:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.6);
+}
+
+/* עיצוב עבור קלט חיפוש */
+input[type="number"][name="id"] {
+    width: 50%;
+    display: inline-block;
+}
+
+/* עיצוב עבור כפתור חיפוש */
+button[type="button"] {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #218838;
+}
+

@@ -23,6 +23,7 @@ export default function Cart({update_cart}){
             {cart.length === 0 ? (
                 <h5>Your Cart Is Empty</h5>
             ) : (
+            <div className={"table-cart"}>
                 <table>
                     <thead>
                     <tr>
@@ -47,11 +48,12 @@ export default function Cart({update_cart}){
                     ))}
                     </tbody>
                 </table>
+            </div>
             )}
 
             <div className="total">
                 <h3>Total Amount: ${totalAmount.toFixed(2)}</h3>
-                <button><Link to={'/payment'} /* to={{ pathname: '/payment', state: { cart, totalAmount }*/ >Go to Payment</Link></button>
+                <button><Link to={'/payment'}>Go to Payment</Link></button>
             </div>
 
         </div>

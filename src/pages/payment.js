@@ -19,11 +19,11 @@ export default function Payment({cart}){
 
     return(
         <>
-            <div>
+            <div className={"container-pay"}>
             <h1>Payment</h1>
                 {cart.length === 0 ? ( <h3>Your Cart Is Empty :) </h3> ) :
                 (
-                    <Form method="post">
+                    <Form className={"form"} method="post">
                         <label>
                             Customer ID:
                             <input name="id" defaultValue={newOrder.id} onBlur={handleOnBlur} required/>
@@ -41,7 +41,7 @@ export default function Payment({cart}){
                         <input type="hidden" name="order" value={JSON.stringify(newOrder.order)}/>
                         <input type="hidden" name="price" value={JSON.stringify(newOrder.price)}/>
 
-                        <button type="submit">Pay</button>
+                        <button type="submit">Pay &#xf09d;</button>
                     </Form>
                 )}
             </div>

@@ -1,3 +1,71 @@
+@import "css/admin.css";
+@import "css/products.css";
+@import "css/cart.css";
+
+
 .App {
   text-align: center;
+
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+/*-------------------- עיצוב עבור ה-header --------------------------*/
+header {
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 15px;
+  flex-direction: row; /* הכפתורים בשורה */
+}
+
+.btn-menu {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.btn-menu:hover {
+  background-color: #0056b3;
+}
+
+.btn-menu a {
+  text-decoration: none;
+  color: white;
+}
+
+/*-------------------- עיצוב עבור הצגת הדפים --------------------------*/
+
+.outlet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+
